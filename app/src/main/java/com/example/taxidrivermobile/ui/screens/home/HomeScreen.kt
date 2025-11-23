@@ -8,9 +8,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.taxidrivermobile.data.repository.TripRepository
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(tripRepository: TripRepository) {
     Box(
         modifier = Modifier
             .fillMaxSize()

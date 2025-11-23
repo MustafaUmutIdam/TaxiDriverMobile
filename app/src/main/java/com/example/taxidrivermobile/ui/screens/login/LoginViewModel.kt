@@ -3,9 +3,11 @@ package com.example.taxidrivermobile.ui.screens.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.taxidrivermobile.data.repository.AuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 data class LoginUiState(
     val phone: String = "",
@@ -15,7 +17,8 @@ data class LoginUiState(
     val isLoggedIn: Boolean = false
 )
 
-class LoginViewModel(
+@HiltViewModel
+class LoginViewModel @Inject constructor(
     private val repository: AuthRepository
 ) : ViewModel() {
 

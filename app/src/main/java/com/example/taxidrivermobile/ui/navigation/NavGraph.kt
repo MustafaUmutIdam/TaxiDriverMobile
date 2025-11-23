@@ -1,14 +1,11 @@
 package com.taxidriver.ui.navigation
 
-import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.taxidrivermobile.data.api.RetrofitClient
-import com.example.taxidrivermobile.data.local.TokenManager
-import com.example.taxidrivermobile.data.repository.AuthRepository
-import com.example.taxidrivermobile.ui.screens.home.HomeScreen
+import com.example.taxidrivermobile.ui.screens.home.HomeBottomNavScreen
 import com.example.taxidrivermobile.ui.screens.login.LoginScreen
 import com.example.taxidrivermobile.ui.screens.login.LoginViewModel
 import com.example.taxidrivermobile.ui.screens.register.RegisterScreen
@@ -20,20 +17,16 @@ sealed class Screen(val route: String) {
     object Home : Screen("home")
 }
 
-@SuppressLint("ViewModelConstructorInComposable")
 @Composable
 fun NavGraph(
-    navController: NavHostController,
-    tokenManager: TokenManager
+    navController: NavHostController
 ) {
-    val repository = AuthRepository(RetrofitClient.apiService, tokenManager)
-
     NavHost(
         navController = navController,
         startDestination = Screen.Login.route
     ) {
         composable(Screen.Login.route) {
-            val viewModel = LoginViewModel(repository)
+            val viewModel: LoginViewModel = hiltViewModel()
             LoginScreen(
                 viewModel = viewModel,
                 onNavigateToRegister = {
@@ -48,7 +41,7 @@ fun NavGraph(
         }
 
         composable(Screen.Register.route) {
-            val viewModel = RegisterViewModel(repository)
+            val viewModel: RegisterViewModel = hiltViewModel()
             RegisterScreen(
                 viewModel = viewModel,
                 onNavigateBack = {
@@ -63,7 +56,7 @@ fun NavGraph(
         }
 
         composable(Screen.Home.route) {
-            HomeScreen()
+            HomeBottomNavScreen()
         }
     }
 }

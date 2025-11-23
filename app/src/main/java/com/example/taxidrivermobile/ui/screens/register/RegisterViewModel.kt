@@ -5,9 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.taxidrivermobile.data.model.RegisterRequest
 import com.example.taxidrivermobile.data.model.Station
 import com.example.taxidrivermobile.data.repository.AuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 data class RegisterUiState(
     val fullName: String = "",
@@ -24,7 +26,8 @@ data class RegisterUiState(
     val isRegistered: Boolean = false
 )
 
-class RegisterViewModel(
+@HiltViewModel
+class RegisterViewModel @Inject constructor(
     private val repository: AuthRepository
 ) : ViewModel() {
 
