@@ -3,7 +3,7 @@ package com.example.taxidrivermobile.data.model
 data class Trip(
     val _id: String? = null,
     val station: Station? = null,
-    val driver: Driver? = null,
+    val driver: String? = null, // Changed from Driver? to String?
     val createdBy: CreatedBy? = null,
     val status: String? = null,
     val customer: Customer? = null,

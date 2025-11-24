@@ -93,4 +93,12 @@ interface ApiService {
         @Body actualFare: Map<String, Double>,
         @Header("Authorization") token: String
     ): TripResponse
+
+    @GET("driver-auth/trips")
+    suspend fun getDriverTrips(
+        @Header("Authorization") token: String,
+        @Query("status") status: String? = null,      // Opsiyonel: "pending", "assigned", "accepted", "in_progress", "completed", "cancelled"
+        @Query("limit") limit: Int = 10,              // Opsiyonel: kaç yolculuk dönsün (default 10)
+        @Query("offset") offset: Int = 0              // Opsiyonel: kaçıncı elemandan başlasın (pagination)
+    ): TripsResponse
 }

@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.taxidrivermobile.ui.screens.mytrips.MyTripsScreen
 import com.example.taxidrivermobile.ui.screens.profile.ProfileScreen
 import com.example.taxidrivermobile.ui.screens.profile.ProfileViewModel
 
@@ -34,7 +35,7 @@ fun HomeBottomNavScreen(
 
     val items = listOf(
         BottomNavItem("Aktif İşler", Icons.Default.AlarmOn),
-        BottomNavItem("İkinci", Icons.AutoMirrored.Filled.List),
+        BottomNavItem("Yolculuklarım", Icons.AutoMirrored.Filled.List),
         BottomNavItem("Profil", Icons.Default.Person)
     )
 
@@ -65,7 +66,7 @@ fun HomeBottomNavScreen(
                 }
 
                 1 -> {
-                    EmptyScreen(title = "İkinci Sayfa (Boş)")
+                    MyTripsScreen()
                 }
 
                 2 -> {
@@ -77,12 +78,5 @@ fun HomeBottomNavScreen(
                 }
             }
         }
-    }
-}
-
-@Composable
-fun EmptyScreen(title: String) {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = title)
     }
 }
