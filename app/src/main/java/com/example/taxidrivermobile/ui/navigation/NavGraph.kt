@@ -5,6 +5,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.taxidrivermobile.data.local.TokenManager
 import com.example.taxidrivermobile.ui.screens.home.HomeBottomNavScreen
 import com.example.taxidrivermobile.ui.screens.login.LoginScreen
 import com.example.taxidrivermobile.ui.screens.login.LoginViewModel
@@ -19,8 +20,9 @@ sealed class Screen(val route: String) {
 
 @Composable
 fun NavGraph(
-    navController: NavHostController
+    navController: NavHostController,
 ) {
+
     NavHost(
         navController = navController,
         startDestination = Screen.Login.route
@@ -56,7 +58,13 @@ fun NavGraph(
         }
 
         composable(Screen.Home.route) {
-            HomeBottomNavScreen()
+            HomeBottomNavScreen(
+                onLogout = {
+                    navController.navigate(Screen.Login.route) {
+                        popUpTo(Screen.Home.route) { inclusive = true }
+                    }
+                }
+            )
         }
     }
 }

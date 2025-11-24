@@ -14,3 +14,33 @@ data class Driver(
     val totalTrips: Int? = null,
     val balance: Double? = null
 )
+data class MeResponse(
+    val success: Boolean,
+    val data: Driver
+)
+
+data class StatusRequest(val status: String)
+
+data class StatusResponse(
+    val success: Boolean,
+    val message: String,
+    val data: Driver?
+)
+
+data class StatusUpdateResponse(
+    val success: Boolean,
+    val message: String,
+    val data: DriverStatusUpdate?
+)
+
+data class DriverStatusUpdate(
+    val station: String? = null,
+    val status: String? = null
+)
+
+data class DriverStatusData(
+    val _id: String,
+    val name: String?,
+    val phone: String?,
+    val status: String
+)

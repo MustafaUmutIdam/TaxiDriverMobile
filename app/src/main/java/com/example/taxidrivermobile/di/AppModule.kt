@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.taxidrivermobile.data.api.ApiService
 import com.example.taxidrivermobile.data.local.TokenManager
 import com.example.taxidrivermobile.data.repository.AuthRepository
+import com.example.taxidrivermobile.data.repository.ProfileRepository
 import com.example.taxidrivermobile.data.repository.TripRepository
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -73,5 +74,11 @@ object AppModule {
     @Provides
     fun provideTripRepository(apiService: ApiService, tokenManager: TokenManager): TripRepository {
         return TripRepository(apiService, tokenManager)
+    }
+
+    @Singleton
+    @Provides
+    fun provideProfileRepository(apiService: ApiService,tokenManager: TokenManager): ProfileRepository {
+        return ProfileRepository(apiService, tokenManager)
     }
 }

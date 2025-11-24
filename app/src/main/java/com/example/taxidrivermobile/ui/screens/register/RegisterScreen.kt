@@ -173,7 +173,7 @@ fun RegisterScreen(
                         )
                         if (uiState.selectedStation != null) {
                             Text(
-                                text = uiState.selectedStation!!.address,
+                                text = uiState.selectedStation?.address ?: "",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -254,11 +254,11 @@ fun StationSelectionDialog(
                         ) {
                             Column(modifier = Modifier.padding(16.dp)) {
                                 Text(
-                                    text = station.name,
+                                    text = station?.name ?: "",
                                     style = MaterialTheme.typography.titleMedium
                                 )
                                 Text(
-                                    text = station.address,
+                                    text = station?.address ?: "",
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )

@@ -13,7 +13,28 @@ interface ApiService {
     suspend fun register(@Body request: RegisterRequest): AuthResponse
 
     @GET("driver-auth/me")
-    suspend fun getProfile(@Header("Authorization") token: String): AuthResponse
+    suspend fun getProfile(@Header("Authorization") token: String): MeResponse
+
+    @PUT("driver-auth/profile")
+    suspend fun updateProfile(
+        @Body request: UpdateProfileRequest,
+        @Header("Authorization") token: String
+    ): AuthResponse
+
+    @PUT("driver-auth/change-password")
+    suspend fun changePassword(
+        @Body request: ChangePasswordRequest,
+        @Header("Authorization") token: String
+    ): ChangePasswordResponse
+
+    @PATCH("driver-auth/status")
+    suspend fun updateStatus(
+        @Body request: UpdateStatusRequest,
+        @Header("Authorization") token: String
+    ): StatusUpdateResponse
+
+
+
 
     // Stations
     @GET("stations")
@@ -27,12 +48,12 @@ interface ApiService {
         @Header("Authorization") token: String
     ): AuthResponse
 
-    @PATCH("drivers/{driverId}/status")
-    suspend fun updateStatus(
-        @Path("driverId") driverId: String,
-        @Body request: UpdateStatusRequest,
-        @Header("Authorization") token: String
-    ): AuthResponse
+//    @PATCH("drivers/{driverId}/status")
+//    suspend fun updateStatus(
+//        @Path("driverId") driverId: String,
+//        @Body request: UpdateStatusRequest,
+//        @Header("Authorization") token: String
+//    ): AuthResponse
 
     // Driver Trips
     @GET("driver-trips/active")

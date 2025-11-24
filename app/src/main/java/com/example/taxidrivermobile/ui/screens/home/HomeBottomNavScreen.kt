@@ -21,11 +21,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.taxidrivermobile.ui.screens.profile.ProfileScreen
+import com.example.taxidrivermobile.ui.screens.profile.ProfileViewModel
 
 data class BottomNavItem(val title: String, val icon: ImageVector)
 
 @Composable
-fun HomeBottomNavScreen() {
+fun HomeBottomNavScreen(
+    onLogout: () -> Unit
+) {
     var selectedIndex by remember { mutableIntStateOf(0) }
 
     val items = listOf(
@@ -60,8 +64,17 @@ fun HomeBottomNavScreen() {
                     ActiveTripScreen(viewModel = activeTripViewModel)
                 }
 
-                1 -> EmptyScreen(title = "İkinci Sayfa (Boş)")
-                2 -> EmptyScreen(title = "Profil (Boş)")
+                1 -> {
+                    EmptyScreen(title = "İkinci Sayfa (Boş)")
+                }
+
+                2 -> {
+                    val profileViewModel: ProfileViewModel = hiltViewModel()
+                    ProfileScreen(
+                        viewModel = profileViewModel,
+                        onLogout = onLogout
+                    )
+                }
             }
         }
     }
