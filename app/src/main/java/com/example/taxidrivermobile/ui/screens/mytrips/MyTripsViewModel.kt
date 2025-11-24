@@ -1,8 +1,8 @@
- package com.example.taxidrivermobile.ui.screens.mytrips
+package com.example.taxidrivermobile.ui.screens.mytrips
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.taxidrivermobile.data.model.Trip
+import com.example.taxidrivermobile.data.model.TripInfo
 import com.example.taxidrivermobile.data.repository.TripRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class MyTripsUiState(
-    val trips: List<Trip> = emptyList(),
+    val trips: List<TripInfo> = emptyList(),
     val isLoading: Boolean = false,
     val error: String? = null
 )

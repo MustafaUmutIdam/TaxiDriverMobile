@@ -4,7 +4,7 @@ import android.util.Log
 import com.example.taxidrivermobile.data.api.ApiService
 import com.example.taxidrivermobile.data.local.TokenManager
 import com.example.taxidrivermobile.data.model.Trip
-import com.example.taxidrivermobile.data.model.TripsResponse
+import com.example.taxidrivermobile.data.model.TripsInfoResponse
 import kotlinx.coroutines.flow.first
 
 class TripRepository(
@@ -121,7 +121,7 @@ class TripRepository(
         }
     }
 
-    suspend fun getDriverTrips(status: String?, limit: Int, offset: Int): Result<TripsResponse> {
+    suspend fun getDriverTrips(status: String?, limit: Int, offset: Int): Result<TripsInfoResponse> {
         return try {
             val token = getAuthToken()
             val response = apiService.getDriverTrips(token, status, limit, offset)

@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.taxidrivermobile.data.model.Trip
+import com.example.taxidrivermobile.data.model.TripInfo
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -65,7 +65,7 @@ fun MyTripsScreen(viewModel: MyTripsViewModel = hiltViewModel()) {
 
 
 @Composable
-fun TripItem(trip: Trip) {
+fun TripItem(trip: TripInfo) {
     val statusColor = when (trip.status) {
         "completed" -> Color(0xFF4CAF50)
         "cancelled" -> Color(0xFFE53935)
